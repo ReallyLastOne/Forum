@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class MainPageController {
 
+    @GetMapping("")
     public String getMainPage(Model model) {
         return "index";
     }
