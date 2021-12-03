@@ -1,24 +1,22 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{layouts/default}">
 
 <head>
     <title>Forum</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-
-    <link href="../../static/css/core.css"
-          th:href="@{/css/core.css}"
-          rel="stylesheet" media="screen" />
 </head>
 <body>
-<!-- Header -->
-<div th:replace="fragments/header :: header"></div>
+<!--<div th:replace="fragments/header :: header"></div>-->
+
 <div class="container">
     <div layout:fragment="content">
         <p>Here will be topics divided on areas.</p>
     </div>
-    <div th:replace="fragments/footer :: footer"></div>
-
 </div>
+
+<!--
+<div th:replace="fragments/footer :: footer"></div>
+-->
+
 </body>
 </html>

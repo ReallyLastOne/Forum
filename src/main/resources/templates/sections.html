@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml" lang="en"
+      layout:decorate="~{layouts/default}">
+<head>
+    <meta charset="UTF-8">
+    <title>Sections</title>
+</head>
+<body>
+<div class="container">
+    <div layout:fragment="content">
+        <h1>List of all sections</h1>
+
+        <tr th:each="section: ${sections}">
+            <td th:text="${section.getName()}"/><br>
+            <p>=================</p>
+        </tr>
+    </div>
+</div>
+
+
+
+</body>
+</html>
