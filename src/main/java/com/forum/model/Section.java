@@ -19,5 +19,5 @@ public class Section {
     private String name;
 
     @OneToMany
-    private List<Subsection> subsections;
+    private List<Thread> threads;
 }

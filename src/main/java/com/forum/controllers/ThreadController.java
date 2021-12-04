@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping(value = "/thread")
+@RequestMapping(value = "/threads")
 public class ThreadController {
     private final ThreadService threadService;
 

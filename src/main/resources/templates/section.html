@@ -11,11 +11,10 @@
 <body>
 <div class="container">
     <div layout:fragment="content">
-        <h1>List of all subsections</h1>
+        <h1>List of all threads</h1>
 
-        <tr th:each="subsection: ${section.getSubsections()}">
-            <td th:text="${subsection.getName()}"></td>
-            <br>
+        <tr th:each="thread: ${section.getThreads()}">
+            <a th:href="@{/threads(id=${thread.getId()})}" th:text="${thread.getName()}"></a>
             <p>=================</p>
         </tr>
     </div>

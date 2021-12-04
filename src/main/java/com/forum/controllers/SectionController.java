@@ -24,9 +24,9 @@ public class SectionController {
         return "sections";
     }
 
-    @GetMapping(value = "/{id}")
-    public String getSectionPage(@PathVariable long id, Model model) {
-        model.addAttribute("section", sectionService.getSection(id));
+    @GetMapping(value = "/{name}")
+    public String getSectionPage(@PathVariable String name, Model model) {
+        model.addAttribute("section", sectionService.getSection(name));
         return "section";
     }
 }

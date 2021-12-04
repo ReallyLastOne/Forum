@@ -11,12 +11,11 @@
         <h1>List of all sections</h1>
 
         <tr th:each="section: ${sections}">
-            <td th:text="${section.getName()}"/><br>
+            <a th:href="@{/sections/}+${section.getName()}" th:text="${section.getName()}"></a>
             <p>=================</p>
         </tr>
     </div>
 </div>
-
 
 
 </body>
