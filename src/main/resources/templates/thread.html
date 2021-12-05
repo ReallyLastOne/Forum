@@ -11,9 +11,12 @@
 
         <div th:object="${thread}">
             <div th:text="${thread.getName()}"></div>
-
+            <tr th:each="post: ${thread.getPosts()}">
+                <div style="display: inline-block;" th:text="${post.getUser().getName()}"></div>
+                <div style="display: inline-block;" th:text="${post.getContent()}"></div>
+                <br/>
+            </tr>
         </div>
-
     </div>
 </div>
 

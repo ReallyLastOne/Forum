@@ -18,6 +18,16 @@ public class Section {
 
     private String name;
 
-    @OneToMany
+    @OneToMany(orphanRemoval = true, mappedBy = "section")
     private List<Thread> threads;
+
+    public void addThread(Thread thread) {
+        threads.add(thread);
+        thread.setSection(this);
+    }
+
+    public void removeThread(Thread thread) {
+        threads.remove(thread);
+        thread.setSection(null);
+    }
 }
