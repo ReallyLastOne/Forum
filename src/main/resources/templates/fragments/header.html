@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html style="font-size: 16px;" lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <title>Header Component</title>
-</head>
-<body>
+    <link rel="stylesheet" type="text/css" href="/css/main.css" media="all">
 
-<header class="masthead mb-auto" th:fragment="header">
-    <div class="inner">
-        <h3 class="masthead-brand">Header placeholder</h3>
-        <nav class="nav nav-masthead justify-content-center">
-            <a th:href="@{/}">Home</a>
-            <a class="nav-link" href="https://getbootstrap.com/docs/4.1/examples/cover/#">Features</a>
-            <a class="nav-link" href="https://github.com/ReallyLastOne/Forum">Contact US</a>
-            <a class="nav-link" href="https://getbootstrap.com/docs/4.1/examples/cover/#">Other Features</a>
-        </nav>
+</head>
+
+<body>
+<header class="u-clearfix u-header u-header" id="sec-5a3f" th:fragment="header">
+    <div class="u-clearfix u-sheet u-sheet-1">
+        <a th:href="@{/}" class="u-image u-logo u-image-1">
+            <img src="/logo.png" class="u-logo-image u-logo-image-1">
+        </a>
+    </div>
+    <div id="navbar">
+        <ul>
+            <li><a th:href="@{/}">Forum</a></li>
+            <li><a th:href="@{/}">About</a></li>
+            <li><a th:href="@{/}">Contact</a></li>
+        </ul>
     </div>
 </header>
 

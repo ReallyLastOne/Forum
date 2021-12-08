@@ -1,24 +1,88 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml" lang="en"
-      layout:decorate="~{layouts/default}">
+<html style="font-size: 16px;" lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{layouts/default}">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <meta name="page_type" content="np-template-header-footer-from-plugin">
+
+    <title>Main</title>
+    <link rel="stylesheet" type="text/css" href="/css/main.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/css/nicepage.css" media="all">
+
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="Main">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
 </head>
-<body>
+
+<body data-home-page="Main.html" data-home-page-title="Main" class="u-body">
+
 <div class="container">
     <div layout:fragment="content">
 
-        <div th:object="${thread}">
-            <div th:text="${thread.getName()}"></div>
-            <tr th:each="post: ${thread.getPosts()}">
-                <div style="display: inline-block;" th:text="${post.getUser().getName()}"></div>
-                <div style="display: inline-block;" th:text="${post.getContent()}"></div>
-                <br/>
-            </tr>
-        </div>
+        <section class="u-clearfix u-grey-50 u-section-1" id="sec-c82a">
+            <div class="u-clearfix u-sheet u-sheet-1">
+                <div class="u-clearfix u-expanded-width u-gutter-10 u-layout-wrap u-layout-wrap-1">
+                    <div class="u-gutter-0 u-layout">
+                        <div class="u-layout-row">
+                            <div class="u-size-60">
+                                <div class="u-layout-col">
+                                    <div class="u-size-20">
+                                        <div class="u-layout-row">
+                                            <div class="u-container-style u-layout-cell u-size-21 u-white">
+                                                <div class="u-container-layout u-container-layout-1"></div>
+                                            </div>
+                                            <div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-39 u-white u-layout-cell-2">
+                                                <div class="u-container-layout u-valign-middle u-container-layout-2">
+                                                    <p class="u-text u-text-1">Sample text. Click to select the text
+                                                        box. Click
+                                                        again or double click to start editing the text.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="u-size-20">
+                                        <div class="u-layout-row">
+                                            <div class="u-container-style u-layout-cell u-size-21 u-white">
+                                                <div class="u-container-layout u-container-layout-3"></div>
+                                            </div>
+                                            <div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-39 u-white u-layout-cell-4">
+                                                <div class="u-container-layout u-valign-middle u-container-layout-4">
+                                                    <p class="u-text u-text-2">Sample text. Click to select the text
+                                                        box. Click
+                                                        again or double click to start editing the text.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="u-size-20">
+                                        <div class="u-layout-row">
+                                            <div class="u-container-style u-layout-cell u-size-21 u-white">
+                                                <div class="u-container-layout u-container-layout-5"></div>
+                                            </div>
+                                            <div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-39 u-white u-layout-cell-6">
+                                                <div class="u-container-layout u-valign-middle u-container-layout-6">
+                                                    <p class="u-text u-text-3">Sample text. Click to select the text
+                                                        box. Click
+                                                        again or double click to start editing the text.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 </div>
+
 
 </body>
 </html>
