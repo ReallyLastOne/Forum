@@ -41,6 +41,7 @@ public class RegistrationController {
             return "register";
         }
         if (userService.getUserByName(user.getName()).isEmpty() && userService.getUserByEmail(user.getEmail()).isEmpty()) {
+            user.createRegisterDate();
             userService.saveUser(user);
             model.addAttribute("alert", "Successful register.");
             return "register";

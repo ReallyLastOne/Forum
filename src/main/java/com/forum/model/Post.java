@@ -21,5 +21,5 @@ public class Post {
     private Thread thread;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private User user;
+    private User author;
 }

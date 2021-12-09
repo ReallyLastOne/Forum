@@ -5,6 +5,8 @@ import com.forum.repositories.ThreadRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class ThreadService {
     private final ThreadRepository threadRepository;
@@ -14,7 +16,7 @@ public class ThreadService {
         this.threadRepository = threadRepository;
     }
 
-    public Thread getThread(long id) {
-        return threadRepository.getById(id);
+    public Optional<Thread> getThread(long id) {
+        return threadRepository.findById(id);
     }
 }

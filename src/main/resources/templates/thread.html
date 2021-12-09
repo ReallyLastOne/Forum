@@ -11,8 +11,6 @@
 
     <title>Main</title>
     <link rel="stylesheet" type="text/css" href="/css/main.css" media="all">
-    <link rel="stylesheet" type="text/css" href="/css/nicepage.css" media="all">
-
     <meta name="theme-color" content="#478ac9">
     <meta property="og:title" content="Main">
     <meta property="og:description" content="">
@@ -31,48 +29,28 @@
                         <div class="u-layout-row">
                             <div class="u-size-60">
                                 <div class="u-layout-col">
-                                    <div class="u-size-20">
-                                        <div class="u-layout-row">
-                                            <div class="u-container-style u-layout-cell u-size-21 u-white">
-                                                <div class="u-container-layout u-container-layout-1"></div>
-                                            </div>
-                                            <div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-39 u-white u-layout-cell-2">
-                                                <div class="u-container-layout u-valign-middle u-container-layout-2">
-                                                    <p class="u-text u-text-1">Sample text. Click to select the text
-                                                        box. Click
-                                                        again or double click to start editing the text.</p>
+                                    <tr th:each="post: ${thread.getPosts()}">
+
+                                        <div class="u-size-20" th:object="${thread}">
+                                            <div class="u-layout-row">
+                                                <div class="u-container-style u-layout-cell u-size-21 u-white">
+                                                    <div class="u-container-layout u-container-layout-1"
+                                                         th:text="${post.getAuthor().getName()}">
+                                                    </div>
+                                                    <div class="u-container-layout u-container-layout-2"
+                                                         th:text="${T(com.forum.utilities.DateUtils).convertToString(post.getAuthor().getRegisterDate())}">
+                                                    </div>
                                                 </div>
+
+                                                <div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-39 u-white u-layout-cell-2">
+                                                    <div class="u-container-layout u-container-layout-3">
+                                                        <p class="u-text u-text-1" th:text="${post.getContent()}">.</p>
+                                                    </div>
+                                                </div>
+
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="u-size-20">
-                                        <div class="u-layout-row">
-                                            <div class="u-container-style u-layout-cell u-size-21 u-white">
-                                                <div class="u-container-layout u-container-layout-3"></div>
-                                            </div>
-                                            <div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-39 u-white u-layout-cell-4">
-                                                <div class="u-container-layout u-valign-middle u-container-layout-4">
-                                                    <p class="u-text u-text-2">Sample text. Click to select the text
-                                                        box. Click
-                                                        again or double click to start editing the text.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="u-size-20">
-                                        <div class="u-layout-row">
-                                            <div class="u-container-style u-layout-cell u-size-21 u-white">
-                                                <div class="u-container-layout u-container-layout-5"></div>
-                                            </div>
-                                            <div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-39 u-white u-layout-cell-6">
-                                                <div class="u-container-layout u-valign-middle u-container-layout-6">
-                                                    <p class="u-text u-text-3">Sample text. Click to select the text
-                                                        box. Click
-                                                        again or double click to start editing the text.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    </tr>
                                 </div>
                             </div>
                         </div>
