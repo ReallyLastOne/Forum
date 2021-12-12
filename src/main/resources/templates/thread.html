@@ -47,7 +47,6 @@
                                                         <p class="u-text u-text-1" th:text="${post.getContent()}">.</p>
                                                     </div>
                                                 </div>
-
                                             </div>
                                         </div>
                                     </tr>
@@ -56,8 +55,21 @@
                         </div>
                     </div>
                 </div>
+                <form name="f" th:action="@{/threads?id=}+${param.id}" method="post">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="content"
+                               id="content" placeholder="content">
+                    </div>
+
+                    <div class="col-md-6 mt-5">
+                        <button type="submit" class="btn btn-primary">Comment</button>
+                    </div>
+                </form>
             </div>
+
         </section>
+
+
     </div>
 </div>
 

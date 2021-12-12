@@ -12,17 +12,4 @@ public class RegisterService {
     public RegisterService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-
-    public boolean isNameValid(String name) {
-        return false;
-    }
-
-    public boolean isEmailValid(String email) {
-        return false;
-    }
-
-    public boolean isPasswordValid(String password) {
-        return false;
-    }
-
 }
