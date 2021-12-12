@@ -7,7 +7,9 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -39,6 +41,28 @@ public class User {
     @Setter(AccessLevel.NONE)
     private LocalDateTime registerDate;
 
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    }, fetch = FetchType.EAGER)
+    @JoinTable(name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"
+            ))
+    private Set<Role> roles = new HashSet<>();
+
+    private boolean banned = false;
+
+    public void addRole(Role role) {
+        roles.add(role);
+        role.addUser(this);
+    }
+
+    public void removeRole(Role role) {
+        roles.remove(role);
+        role.removeUser(this);
+    }
+
     public void addPost(Post post) {
         posts.add(post);
         post.setAuthor(this);
@@ -49,7 +73,12 @@ public class User {
         post.setAuthor(null);
     }
 
-    public void createRegisterDate() {
+    public void initialize() {
         if (registerDate == null) registerDate = LocalDateTime.now();
+    }
+
+    @Override
+    public String toString() {
+        return "User={id=" + id + ", name=" + name + ", password=" + ", email=" + email + ", registerDate=" + registerDate + "banned=" + banned + ", roles=" + roles + "}";
     }
 }
