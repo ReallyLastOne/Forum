@@ -15,12 +15,40 @@
 </head>
 
 <body>
-<div class="container">
-    <div layout:fragment="content">
-        <p>Here will be sections divided on areas.</p>
-        <a th:href="@{/sections}">Sections</a>
-    </div>
+<div layout:fragment="content"  >
+
+    <section class="u-clearfix u-section-1" id="sec-4ae4">
+        <div class="u-clearfix u-sheet u-sheet-1">
+            <div class="u-expanded-width u-list u-list-1" >
+
+
+                <tr th:each="section: ${sections}" >
+                    <div class="u-repeater u-repeater-1">
+
+                        <div class="u-container-style u-list-item u-repeater-item">
+                            <div class="u-container-layout u-similar-container u-container-layout-1">
+                                <a class="u-text u-text-default u-text-3" th:text="${section.getName()}" th:href="@{/sections/}+${section.getName()}"></a>
+                                <p class="u-text u-text-default u-text-4" th:text="${section.getDescription()}">Description of section 1</p>
+                            </div>
+                        </div>
+
+                        <div class="u-container-style u-list-item u-repeater-item">
+                            <div class="u-container-layout u-similar-container u-container-layout-2">
+                                <h1 class="u-text u-text-default u-text-3">Last post:</h1>
+                                <div th:if="${service.getLastActiveThread(section.getId()).isPresent()}">
+                                    <a class="u-text u-text-default u-text-4" th:text="${service.getLastActiveThread(section.getId()).get().getName()}" th:href="@{~/threads?id=}+${service.getLastActiveThread(section.getId()).get().getId()}"></a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </tr>
+            </div>
+        </div>
+    </section>
+
 </div>
+<a th:href="@{/sections}">Sections</a>
 
 
 </body>

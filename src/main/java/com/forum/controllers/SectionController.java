@@ -26,7 +26,7 @@ public class SectionController {
 
     @GetMapping(value = "/{name}")
     public String getSectionPage(@PathVariable String name, Model model) {
-        model.addAttribute("section", sectionService.getSection(name));
+        model.addAttribute("section", sectionService.getSection(name).get());
         return "section";
     }
 }

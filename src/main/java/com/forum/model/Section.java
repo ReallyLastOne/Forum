@@ -21,6 +21,8 @@ public class Section {
     @OneToMany(orphanRemoval = true, mappedBy = "section")
     private List<Thread> threads;
 
+    private String description;
+
     public void addThread(Thread thread) {
         threads.add(thread);
         thread.setSection(this);

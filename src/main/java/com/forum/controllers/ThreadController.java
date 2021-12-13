@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Controller
@@ -44,11 +45,11 @@ public class ThreadController {
 
     @PostMapping
     public String addPostToSingleThread(@RequestParam long id, Model model, String content) {
-        System.out.println("add post to single thread");
         Optional<Thread> thread = threadService.getThread(id);
         if (thread.isPresent()) {
             String username;
             Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            // we validate here if user is logged, shouldn't it be in SecurityConfig (antMatchers post method)?
 
             if (principal instanceof UserDetails) {
                 username = ((UserDetails) principal).getUsername();
@@ -58,7 +59,7 @@ public class ThreadController {
 
             Optional<User> user = userService.getUserByName(username);
             model.addAttribute("thread", thread.get());
-            Post post = postService.savePost(new Post(0L, content, thread.get(), user.get()));
+            Post post = postService.savePost(new Post(0L, content, thread.get(), user.get(), LocalDateTime.now()));
             thread.get().addPost(post);
             return "redirect:/threads?id=" + id;
         }
