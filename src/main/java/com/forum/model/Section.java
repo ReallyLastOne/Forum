@@ -5,7 +5,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 @Entity
 @Getter
@@ -31,5 +33,10 @@ public class Section {
     public void removeThread(Thread thread) {
         threads.remove(thread);
         thread.setSection(null);
+    }
+
+    public Optional<Thread> findMostRecentThread() {
+        return threads.stream().map(Thread::findMostRecentPost).filter(Optional::isPresent).map(Optional::get)
+                .max(Comparator.comparing(Post::getCreationDate)).map(Post::getThread);
     }
 }

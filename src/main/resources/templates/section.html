@@ -1,23 +1,58 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml" lang="en"
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
       layout:decorate="~{layouts/default}">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
-    <title>Section</title>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title></title>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="Main">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
 </head>
 
 <body>
-<div class="container">
-    <div layout:fragment="content">
-        <h1>List of all threads</h1>
+<div layout:fragment="content">
 
-        <tr th:each="thread: ${section.getThreads()}">
-            <a th:href="@{/threads(id=${thread.getId()})}" th:text="${thread.getName()}"></a>
-            <p>=================</p>
-        </tr>
-    </div>
+    <section class="u-clearfix u-section-1" id="sec-4ae4">
+        <div class="u-clearfix u-sheet u-sheet-1">
+            <div class="u-expanded-width u-list u-list-1">
+
+
+                <tr th:each="thread: ${section.getThreads()}">
+                    <div class="u-repeater u-repeater-1">
+                        <!-- thread name display -->
+                        <div class="u-container-style u-list-item u-repeater-item">
+                            <div class="u-container-layout u-similar-container u-container-layout-1">
+                                <b><a class="u-text u-text-default u-text-3" th:text="${thread.getName()}"
+                                      th:href="@{/threads?id=}+${thread.getId()}"></a></b>
+                                <a class="u-text u-text-default u-text-3"
+                                   th:text="${thread.findMostRecentPost().get().getAuthor().getName()}"
+                                   th:href="@{/users?id=} + ${thread.findMostRecentPost().get().getAuthor().getId()}"
+                                ></a>
+
+                            </div>
+                        </div>
+
+                        <div class="u-container-style u-list-item u-repeater-item">
+                            <div class="u-container-layout u-similar-container u-container-layout-2">
+                                <h1 class="u-text u-text-default u-text-3">Last post:</h1>
+                                <div>
+                                    <p>post info</p>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </tr>
+            </div>
+        </div>
+    </section>
+
 </div>
 
 

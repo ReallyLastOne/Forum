@@ -50,6 +50,7 @@ public class ThreadController {
             String username;
             Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             // we validate here if user is logged, shouldn't it be in SecurityConfig (antMatchers post method)?
+            if (principal.equals("anonymousUser")) return "redirect:/threads?id=" + id + "&error";
 
             if (principal instanceof UserDetails) {
                 username = ((UserDetails) principal).getUsername();

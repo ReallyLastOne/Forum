@@ -15,20 +15,21 @@
 </head>
 
 <body>
-<div layout:fragment="content"  >
+<div layout:fragment="content">
 
     <section class="u-clearfix u-section-1" id="sec-4ae4">
         <div class="u-clearfix u-sheet u-sheet-1">
-            <div class="u-expanded-width u-list u-list-1" >
+            <div class="u-expanded-width u-list u-list-1">
 
 
-                <tr th:each="section: ${sections}" >
+                <tr th:each="section: ${sections}">
                     <div class="u-repeater u-repeater-1">
-
+                        <!-- section name and description display -->
                         <div class="u-container-style u-list-item u-repeater-item">
                             <div class="u-container-layout u-similar-container u-container-layout-1">
-                                <a class="u-text u-text-default u-text-3" th:text="${section.getName()}" th:href="@{/sections/}+${section.getName()}"></a>
-                                <p class="u-text u-text-default u-text-4" th:text="${section.getDescription()}">Description of section 1</p>
+                                <b><a class="u-text u-text-default u-text-3" th:text="${section.getName()}"
+                                      th:href="@{/sections/}+${section.getName()}"></a></b>
+                                <p class="u-text u-text-default u-text-4" th:text="${section.getDescription()}"></p>
                             </div>
                         </div>
 
@@ -36,7 +37,24 @@
                             <div class="u-container-layout u-similar-container u-container-layout-2">
                                 <h1 class="u-text u-text-default u-text-3">Last post:</h1>
                                 <div th:if="${service.getLastActiveThread(section.getId()).isPresent()}">
-                                    <a class="u-text u-text-default u-text-4" th:text="${service.getLastActiveThread(section.getId()).get().getName()}" th:href="@{~/threads?id=}+${service.getLastActiveThread(section.getId()).get().getId()}"></a>
+
+                                    <!-- last active thread name display with url reference -->
+                                    <b>
+                                        <a class="u-text u-text-default u-text-4"
+                                           th:text="${service.getLastActiveThread(section.getId()).get().getName()}"
+                                           th:href="@{~/threads?id=}+${service.getLastActiveThread(section.getId()).get().getId()}"></a>
+                                    </b>
+                                    <!-- last post author name with url reference -->
+                                    <a class="u-text u-text-default u-text-4"
+                                       th:href="@{/users?id=} + ${service.getLastActiveThread(section.getId()).get().findMostRecentPost().get().getAuthor().getId()}"
+                                       th:text="${service.getLastActiveThread(section.getId()).get().findMostRecentPost().get().getAuthor().getName()}">
+                                    </a>
+
+                                    <!-- last post creation date -->
+                                    <p class="u-text u-text-default u-text-4"
+                                       th:text="${T(com.forum.utilities.DateUtils).withHours(service.getLastActiveThread(section.getId()).get().findMostRecentPost().get().getCreationDate())}">
+                                    </p>
+
                                 </div>
                             </div>
                         </div>
@@ -48,7 +66,6 @@
     </section>
 
 </div>
-<a th:href="@{/sections}">Sections</a>
 
 
 </body>

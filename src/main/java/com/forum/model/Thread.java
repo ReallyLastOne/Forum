@@ -6,7 +6,10 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 @Entity
 @Getter
@@ -35,5 +38,9 @@ public class Thread {
     public void removePost(Post post) {
         posts.remove(post);
         post.setThread(null);
+    }
+
+    public Optional<Post> findMostRecentPost() {
+        return posts.stream().max(Comparator.comparing(Post::getCreationDate));
     }
 }

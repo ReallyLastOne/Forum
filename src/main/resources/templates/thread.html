@@ -9,7 +9,7 @@
 
     <meta name="page_type" content="np-template-header-footer-from-plugin">
 
-    <title>Main</title>
+    <title th:text="${thread.getName()}"></title>
     <link rel="stylesheet" type="text/css" href="/css/main.css" media="all">
     <meta name="theme-color" content="#478ac9">
     <meta property="og:title" content="Main">
@@ -29,19 +29,22 @@
                         <div class="u-layout-row">
                             <div class="u-size-60">
                                 <div class="u-layout-col">
+                                    <!-- for each post in thread-->
                                     <tr th:each="post: ${thread.getPosts()}">
 
                                         <div class="u-size-20" th:object="${thread}">
                                             <div class="u-layout-row">
                                                 <div class="u-container-style u-layout-cell u-size-21 u-white">
+                                                    <!-- display author's name-->
                                                     <div class="u-container-layout u-container-layout-1"
                                                          th:text="${post.getAuthor().getName()}">
                                                     </div>
+                                                    <!-- display author's register date -->
                                                     <div class="u-container-layout u-container-layout-2"
                                                          th:text="${T(com.forum.utilities.DateUtils).convertToString(post.getAuthor().getRegisterDate())}">
                                                     </div>
                                                 </div>
-
+                                                <!-- display post content -->
                                                 <div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-39 u-white u-layout-cell-2">
                                                     <div class="u-container-layout u-container-layout-3">
                                                         <p class="u-text u-text-1" th:text="${post.getContent()}">.</p>
