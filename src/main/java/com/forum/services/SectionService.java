@@ -34,7 +34,7 @@ public class SectionService {
     }
 
     public Optional<Thread> getLastActiveThread(long sectionId) {
-        Optional<Section> section = sectionRepository.findById(sectionId);
+        Optional<Section> section = sectionRepository.findById(sectionId); // not better to move findMostRecentThread() to section repository?
         return section.get().findMostRecentThread();
     }
 }

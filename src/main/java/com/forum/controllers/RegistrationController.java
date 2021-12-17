@@ -3,6 +3,7 @@ package com.forum.controllers;
 import com.forum.model.Role;
 import com.forum.model.User;
 import com.forum.repositories.RoleRepository;
+import com.forum.services.UserMapper;
 import com.forum.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -24,13 +25,15 @@ public class RegistrationController {
     private final TemplateEngine templateEngine;
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
+    private final UserMapper userMapper;
 
     @Autowired
-    public RegistrationController(UserService userService, TemplateEngine templateEngine, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
+    public RegistrationController(UserService userService, TemplateEngine templateEngine, RoleRepository roleRepository, PasswordEncoder passwordEncoder, UserMapper userMapper) {
         this.userService = userService;
         this.templateEngine = templateEngine;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
+        this.userMapper = userMapper;
     }
 
     @GetMapping
@@ -48,9 +51,9 @@ public class RegistrationController {
             user.initialize();
             Role role = roleRepository.findByCode("user");
             user.addRole(role);
+            model.addAttribute("user", user);
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             userService.saveUser(user);
-
             model.addAttribute("alert", "Successful register.");
             return "register";
         }

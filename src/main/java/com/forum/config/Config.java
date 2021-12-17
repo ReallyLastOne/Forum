@@ -28,6 +28,11 @@ public class Config {
                 .build();
     }
 
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
     @ModelAttribute("user")
     public User user() {
         return new User();
