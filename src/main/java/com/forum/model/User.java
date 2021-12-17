@@ -2,6 +2,7 @@ package com.forum.model;
 
 import com.forum.constraint.ValidPassword;
 import lombok.*;
+import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -53,6 +54,9 @@ public class User {
 
     private boolean banned = false;
 
+    @Embedded
+    private UserDetails userDetails;
+
     public void addRole(Role role) {
         roles.add(role);
         role.addUser(this);
@@ -75,10 +79,12 @@ public class User {
 
     public void initialize() {
         if (registerDate == null) registerDate = LocalDateTime.now();
+        if (userDetails == null) userDetails = new UserDetails();
     }
 
     @Override
     public String toString() {
-        return "User={id=" + id + ", name=" + name + ", password=" + ", email=" + email + ", registerDate=" + registerDate + ", banned=" + banned + ", roles=" + roles + "}";
+        return "User={id=" + id + ", name=" + name + ", password=" + ", email=" + email + ", registerDate=" +
+                registerDate + ", banned=" + banned + ", roles=" + roles + ", userDetails=" + userDetails + "}";
     }
 }

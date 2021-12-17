@@ -1,7 +1,6 @@
 package com.forum.model;
 
 import lombok.Getter;
-import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -14,6 +13,7 @@ public class UserDto {
     private LocalDateTime registerDate;
     private boolean banned;
     private Set<Role> roles;
+    private UserDetails userDetails;
 
     public UserDto(User user) {
         this.name = user.getName();
@@ -21,5 +21,6 @@ public class UserDto {
         this.registerDate = user.getRegisterDate();
         this.banned = user.isBanned();
         this.roles = user.getRoles();
+        this.userDetails = user.getUserDetails();
     }
 }

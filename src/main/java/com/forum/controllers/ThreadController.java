@@ -40,7 +40,7 @@ public class ThreadController {
             model.addAttribute("thread", thread.get());
             return "thread";
         }
-        return "wrongThread";
+        return "wrong-request";
     }
 
     @PostMapping

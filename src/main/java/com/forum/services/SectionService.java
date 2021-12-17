@@ -30,7 +30,7 @@ public class SectionService {
     }
 
     public Optional<Section> getSection(String name) {
-        return Optional.of(sectionRepository.findByName(name));
+        return Optional.ofNullable(sectionRepository.findByName(name));
     }
 
     public Optional<Thread> getLastActiveThread(long sectionId) {

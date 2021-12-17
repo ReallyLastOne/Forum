@@ -26,7 +26,11 @@
             <div class="u-clearfix u-sheet u-sheet-1">
                 <div class="u-clearfix u-expanded-width u-gutter-10 u-layout-wrap u-layout-wrap-1">
                     <div class="u-gutter-0 u-layout">
+
+
                         <div class="u-layout-row">
+                            <p th:text="${thread.getName()}" style="text-align:center; font-size:300%;"></p>
+
                             <div class="u-size-60">
                                 <div class="u-layout-col">
                                     <!-- for each post in thread-->
@@ -36,8 +40,12 @@
                                             <div class="u-layout-row">
                                                 <div class="u-container-style u-layout-cell u-size-21 u-white">
                                                     <!-- display author's name-->
-                                                    <div class="u-container-layout u-container-layout-1"
-                                                         th:text="${post.getAuthor().getName()}">
+                                                    <div class="u-container-layout u-container-layout-1">
+                                                        <b>
+                                                            <a th:text="${post.getAuthor().getName()}"
+                                                               th:href="@{/users?id=} + ${post.getAuthor().getId()}">
+                                                            </a>
+                                                        </b>
                                                     </div>
                                                     <!-- display author's register date -->
                                                     <div class="u-container-layout u-container-layout-2"

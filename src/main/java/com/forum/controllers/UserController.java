@@ -31,6 +31,6 @@ public class UserController {
             model.addAttribute("user", userMapper.userToUserDTO(user.get()));
             return "user";
         }
-        return "wrongUser";
+        return "wrong-request";
     }
 }
