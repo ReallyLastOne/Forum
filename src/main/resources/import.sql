@@ -13,6 +13,7 @@ INSERT INTO `user`(id,banned,email,name,password, register_date, description) va
 INSERT INTO thread (id,name,section_id) values (1, 'About effectiveness of this', 1)
 INSERT INTO thread (id,name,section_id) values (2, 'Why something works like that?', 2)
 INSERT INTO thread (id,name,section_id) values (3, 'Disagree with opinion about', 2)
+INSERT INTO thread (id,name,section_id) values (4, 'Hello to everyone', 1)
 
 INSERT INTO post(id,content, thread_id, author_id, creation_date) values(1, 'What do you think about something?', 1, 1, '2016-07-14T11:40:55.9483536')
 INSERT INTO post(id,content, thread_id, author_id, creation_date) values(2, 'I definitely agree', 1, 2, '2017-01-01T12:32:55.9483536')
@@ -21,6 +22,7 @@ INSERT INTO post(id,content, thread_id, author_id, creation_date) values(4, 'noo
 INSERT INTO post(id,content, thread_id, author_id, creation_date) values(5, 'post5', 2, 1, '2000-11-01T5:45:55.9483536')
 INSERT INTO post(id,content, thread_id, author_id, creation_date) values(6, 'post6', 2, 2, '2015-01-07T5:05:55.9483536')
 INSERT INTO post(id,content, thread_id, author_id, creation_date) values(7, 'post7', 3, 3, '2005-01-06T6:25:55.9483536')
+INSERT INTO post(id,content, thread_id, author_id, creation_date) values(8, 'I want to say hello to everyone', 4, 1, '2025-05-05T6:00:55.9483536')
 
 INSERT INTO role(id, code) values (1, 'user')
 INSERT INTO role(id, code) values (2, 'moderator')

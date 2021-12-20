@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
 @Getter
@@ -27,4 +28,17 @@ public class Post {
     private User author;
 
     private LocalDateTime creationDate;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Post post = (Post) o;
+        return Objects.equals(id, post.id) && Objects.equals(content, post.content) && Objects.equals(thread, post.thread) && Objects.equals(author, post.author) && Objects.equals(creationDate, post.creationDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, content, thread, author, creationDate);
+    }
 }

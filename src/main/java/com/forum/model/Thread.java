@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Entity
@@ -42,5 +43,18 @@ public class Thread {
 
     public Optional<Post> findMostRecentPost() {
         return posts.stream().max(Comparator.comparing(Post::getCreationDate));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Thread thread = (Thread) o;
+        return Objects.equals(id, thread.id) && Objects.equals(name, thread.name) && Objects.equals(posts, thread.posts) && Objects.equals(section, thread.section);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, posts, section);
     }
 }
