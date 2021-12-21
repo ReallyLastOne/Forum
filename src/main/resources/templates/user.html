@@ -59,19 +59,25 @@
                                             <td class="u-align-center u-border-1 u-border-grey-dark-1 u-table-cell u-table-cell-2">
                                                 <a th:href="@{/user-posts/}+${user.getId()}">Posts</a>
                                             </td>
-                                            <td class="u-align-center u-border-1 u-border-grey-dark-1 u-table-cell">
-                                                <a th:href="@{/}">About</a>
-                                            </td>
                                         </tr>
                                         </tbody>
                                     </table>
+
                                 </div>
+
+                                <p th:if="${user.getUserDetails().getBirthDate()!=null}" class="u-text u-text-2"
+                                   th:text="'Birth date: ' +  ${T(com.forum.utilities.DateUtils).convertToString(user.getUserDetails().getBirthDate())}"></p>
+                                <p th:if="${user.getUserDetails().getSex()!=null}" class="u-text u-text-2"
+                                   th:text="'Sex: ' + ${T(com.forum.utilities.Utilities).booleanToSex(user.getUserDetails().getSex())}"></p>
+
                                 <h2 class="u-text u-text-1">Description</h2>
-                                <p class="u-text u-text-2" th:text="${user.getUserDetails().getDescription()}">Here is
-                                    description about user.</p>
+                                <p class="u-text u-text-2" th:text="${user.getUserDetails().getDescription()}"></p>
                                 <a href="" class="u-btn u-button-style u-btn-1">Message</a>
+
+
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>

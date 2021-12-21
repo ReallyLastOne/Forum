@@ -5,7 +5,7 @@ INSERT INTO `section`(id,name, description) values (4, 'section4', 'description 
 INSERT INTO `section`(id,name, description) values (5, 'section5', 'description of section')
 
 //passw!1Aa3b
-INSERT INTO `user`(id,banned,email,name,password, register_date, description) values (1,false, 'asd@o2.com', 'ian', '$2a$10$4yKaR9AzPspVxt0B5219U.YRjNzDhYGl3CkGRakXmcqHADzkIEEUS', '2018-07-14T17:45:55.9483536', 'No description provided.')
+INSERT INTO `user`(id,banned,email,name,password, register_date, description, birth_date, sex) values (1,false, 'asd@o2.com', 'ian', '$2a$10$4yKaR9AzPspVxt0B5219U.YRjNzDhYGl3CkGRakXmcqHADzkIEEUS', '2018-07-14T17:45:55.9483536', 'No description provided.', '1950-01-06', true)
 INSERT INTO `user`(id,banned,email,name,password, register_date, description) values (2, false,'as2dd@o2.com', 'johhn', '$2a$10$4yKaR9AzPspVxt0B5219U.YRjNzDhYGl3CkGRakXmcqHADzkIEEUS','2018-07-14T17:45:55.9483536', 'i like chicken')
 INSERT INTO `user`(id,banned,email,name,password, register_date, description) values (3,false, 'a23sd@o2.com', 'george', '$2a$10$4yKaR9AzPspVxt0B5219U.YRjNzDhYGl3CkGRakXmcqHADzkIEEUS','2015-04-14T17:45:55.9483536', 'big fan of books')
 INSERT INTO `user`(id,banned,email,name,password, register_date, description) values (4,true, 'ab2sd@o2.com', 'tom', '$2a$10$4yKaR9AzPspVxt0B5219U.YRjNzDhYGl3CkGRakXmcqHADzkIEEUS', '2018-07-14T17:45:55.9483536', '')
