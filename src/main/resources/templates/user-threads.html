@@ -20,7 +20,8 @@
     <section class="u-clearfix u-section-1" id="sec-4ae4">
         <div class="u-clearfix u-sheet u-sheet-1">
             <div class="u-expanded-width u-list u-list-1">
-
+                <b><p style="font-size: xx-large;" th:text="${user.getName()}+' threads'"
+                      class="u-custom-font u-font-courier-new u-text u-text-default u-text-5"></p></b>
 
                 <tr th:each="thread: ${threads}">
                     <div class="u-repeater u-repeater-1">

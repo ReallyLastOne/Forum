@@ -1,5 +1,6 @@
 package com.forum.controllers;
 
+import com.forum.model.Post;
 import com.forum.model.Thread;
 import com.forum.model.User;
 import com.forum.services.ThreadService;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 public class UserController {
@@ -40,8 +42,20 @@ public class UserController {
     public String getUserThreads(@PathVariable(value = "id") long id, Model model) {
         Optional<List<Thread>> threadsOptional = threadService.getUsersThreads(id);
         if (threadsOptional.isPresent()) {
+            model.addAttribute("user", userMapper.userToUserDTO(threadsOptional.get().get(0).findMostRecentPost().get().getAuthor()));
             model.addAttribute("threads", threadsOptional.get());
             return "user-threads";
+        }
+        return "wrong-request";
+    }
+
+    @GetMapping(value = "/user-posts/{id}")
+    public String getUserPosts(@PathVariable(value = "id") long id, Model model) {
+        Optional<User> userOptional = userService.getUserById(id);
+        if (userOptional.isPresent()) {
+            model.addAttribute("user", userMapper.userToUserDTO(userOptional.get()));
+            model.addAttribute("posts", userOptional.get().getPosts());
+            return "user-posts";
         }
         return "wrong-request";
     }

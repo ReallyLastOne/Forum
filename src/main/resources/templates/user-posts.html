@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layouts/default}">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title></title>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="Main">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+</head>
+
+<body>
+
+<div layout:fragment="content">
+    <section class="u-clearfix u-section-1" id="sec-4ae4" th:object="${posts}">
+
+        <div class="u-clearfix u-sheet u-sheet-1">
+
+            <div class="u-expanded-width u-list u-list-1">
+                <b><p style="font-size: xx-large;" th:text="${user.getName()}+' posts'"
+                      class="u-custom-font u-font-courier-new u-text u-text-default u-text-5"></p></b>
+                <tr th:each="post: ${posts}">
+                    <div class="u-repeater u-repeater-1">
+                        <!-- thread name display -->
+                        <div class="u-container-style u-list-item u-repeater-item">
+                            <div class="u-container-layout u-similar-container u-container-layout-1">
+                                <b><a class="u-text u-text-default u-text-3" th:text="${post.getThread().getName()}"
+                                      th:href="@{/threads?id=}+${post.getThread().getId()} + '#post' + ${post.getId()}"></a></b>
+                                <p class="u-text u-text-default u-text-3"
+                                   th:text="${post.getContent()}"
+                                ></p>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </tr>
+
+
+            </div>
+        </div>
+    </section>
+
+</div>
+
+
+</body>
+</html>

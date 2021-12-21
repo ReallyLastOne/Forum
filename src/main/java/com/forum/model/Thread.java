@@ -45,6 +45,10 @@ public class Thread {
         return posts.stream().max(Comparator.comparing(Post::getCreationDate));
     }
 
+    public Optional<Post> findFirstPost() {
+        return posts.stream().min(Comparator.comparing(Post::getCreationDate));
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
