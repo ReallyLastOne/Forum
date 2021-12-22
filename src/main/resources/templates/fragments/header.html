@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html style="font-size: 16px;" lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html style="font-size: 16px;" lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <link rel="stylesheet" type="text/css" href="/css/main.css" media="all">
 
@@ -13,11 +14,14 @@
         </a>
     </div>
     <div id="navbar">
+
         <ul>
             <li><a th:href="@{/}">Forum</a></li>
-            <li><a th:href="@{/register}">Register</a></li>
-            <li><a th:href="@{/login}">Login</a></li>
+            <li><a sec:authorize="!isAuthenticated()" th:href="@{/register}">Register</a></li>
+            <li><a sec:authorize="!isAuthenticated()" th:href="@{/login}">Login</a></li>
             <li><a href="https://github.com/ReallyLastOne/Forum">Contact</a></li>
+            <li><a sec:authorize="isAuthenticated()" th:href="@{/profile}">Profile</a></li>
+            <li><a sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a></li>
         </ul>
     </div>
 </header>

@@ -6,6 +6,7 @@ import com.forum.repositories.RoleRepository;
 import com.forum.services.UserMapper;
 import com.forum.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,12 +39,18 @@ public class RegistrationController {
 
     @GetMapping
     public String register(@ModelAttribute("user") User user, Model model) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (!principal.equals("anonymousUser")) return "redirect:/";
+
         model.addAttribute("user", user);
         return "register";
     }
 
     @PostMapping
     public String register(@ModelAttribute("user") @Valid User user, BindingResult bindingResult, Model model) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (!principal.equals("anonymousUser")) return "redirect:/";
+
         if (bindingResult.hasErrors()) {
             return "register";
         }

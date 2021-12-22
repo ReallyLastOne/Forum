@@ -61,6 +61,6 @@ public class ThreadController {
             thread.get().addPost(post);
             return "redirect:/threads?id=" + id;
         }
-        return "wrongThread";
+        return "wrong-request";
     }
 }
