@@ -1,0 +1,32 @@
+<div class="u-container-style u-layout-cell u-size-14 u-layout-cell-1" th:fragment="side-panel"
+     xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="u-border-2 u-border-grey-75 u-container-layout u-container-layout-1">
+        <div class="u-expanded-width u-table u-table-responsive u-table-1">
+            <table class="u-table-entity">
+                <colgroup>
+                    <col width="100%">
+                </colgroup>
+                <tbody class="u-table-body">
+                <tr style="height: 50px;">
+                    <td class="u-border-2 u-border-grey-dark-1 u-border-no-left u-border-no-right u-table-cell">
+                    <a th:href="@{/profile?do=editprofile}">Edit profile data</a>
+                    </td>
+                </tr>
+                <tr style="height: 50px;">
+                    <td class="u-border-2 u-border-grey-dark-1 u-border-no-left u-border-no-right u-table-cell">
+                        <a th:href="@{/profile?do=editpassword}">Edit e-mail or password</a>
+                    </td>
+                </tr>
+                <tr style="height: 50px;">
+                    <td class="u-border-2 u-border-grey-dark-1 u-border-no-left u-border-no-right u-table-cell">
+                        <a th:href="@{/profile?do=pm}">Private message</a>
+                    </td>
+                </tr>
+                <tr style="height: 34px;">
+                    <td class="u-border-2 u-border-grey-dark-1 u-border-no-left u-border-no-right u-table-cell"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

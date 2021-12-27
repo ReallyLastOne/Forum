@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layouts/default}">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title></title>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="Main">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/profile.css}" media="all">
+
+</head>
+
+<body class="u-body">
+
+<div layout:fragment="content">
+    <section class="u-clearfix u-section-1" id="sec-ec96">
+        <div class="u-clearfix u-sheet u-sheet-1">
+            <div class="u-clearfix u-expanded-width u-gutter-26 u-layout-wrap u-layout-wrap-1">
+                <div class="u-layout">
+                    <div class="u-layout-row" th:with="view=${view}">
+                        <div th:replace="fragments/profile-side-panel :: side-panel"></div>
+
+                        <div th:if="${#strings.equals(view, 'main')}">
+                             <div th:replace="fragments/profile-main :: main"></div>
+                         </div>
+
+                         <div th:if="${#strings.equals(view, 'editprofile')}">
+                             <div th:replace="fragments/profile-data :: data"></div>
+                         </div>
+
+                         <div th:if="${#strings.equals(view, 'editpassword')}">
+                             <div th:replace="fragments/profile-password :: password"></div>
+                         </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+</div>
+</body>
+
+</html>

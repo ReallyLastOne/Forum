@@ -1,0 +1,30 @@
+<div class="u-align-center u-container-style u-layout-cell u-shape-rectangle u-size-46 u-layout-cell-2"
+     th:fragment="data" th:remove="tag" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="u-border-2 u-border-grey-75 u-container-layout u-valign-bottom u-container-layout-2">
+        <div class="u-table u-table-responsive u-table-2">
+            <form action="#" th:action="@{/profile?do=editprofile}" th:object="${userInfo}"
+                  method="post">
+                <fieldset>
+                    <legend>Edit your profile data</legend>
+                    <div th:if="${userInfo.getBirthDate()==null}">
+                        <label for="birthDate">Birth date:</label><br/>
+                        <input type="date" th:field="*{{birthDate}}" id="birthDate" name="date" style=”margin-right:15px”><br/>
+                    </div>
+
+                    <label for="sex">Sex:</label><br/>
+                    <select name="sex" id="sex" style=”margin-right:15px”>
+                        <option th:value="true">Male</option>
+                        <option th:value="false">Female</option>
+                    </select>
+                    <br/>
+                    <label for="description">Description:</label><br/>
+                    <input type="text" id="description" th:field="*{description}" th:value="${userInfo.getDescription()}">
+
+
+                </fieldset>
+                <input type="submit" class="btn btn-primary u-btn u-btn-submit u-button-style" value="Submit">
+
+            </form>
+        </div>
+    </div>
+</div>

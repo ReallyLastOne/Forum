@@ -13,7 +13,6 @@ public class UserDetailsImpl implements UserDetails {
 
     public UserDetailsImpl(User user) {
         this.user = user;
-        System.out.println(user);
     }
 
     @Override

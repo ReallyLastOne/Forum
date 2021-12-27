@@ -65,13 +65,13 @@
 
                                 </div>
 
-                                <p th:if="${user.getUserDetails().getBirthDate()!=null}" class="u-text u-text-2"
-                                   th:text="'Birth date: ' +  ${T(com.forum.utilities.DateUtils).convertToString(user.getUserDetails().getBirthDate())}"></p>
-                                <p th:if="${user.getUserDetails().getSex()!=null}" class="u-text u-text-2"
-                                   th:text="'Sex: ' + ${T(com.forum.utilities.Utilities).booleanToSex(user.getUserDetails().getSex())}"></p>
+                                <p th:if="${user.getUserInfo().getBirthDate()!=null}" class="u-text u-text-2"
+                                   th:text="'Birth date: ' +  ${user.getUserInfo().getBirthDate()}"></p>
+                                <p th:if="${user.getUserInfo().getSex()!=null}" class="u-text u-text-2"
+                                   th:text="'Sex: ' + ${T(com.forum.utilities.Utilities).booleanToSex(user.getUserInfo().getSex())}"></p>
 
                                 <h2 class="u-text u-text-1">Description</h2>
-                                <p class="u-text u-text-2" th:text="${user.getUserDetails().getDescription()}"></p>
+                                <p class="u-text u-text-2" th:text="${user.getUserInfo().getDescription()}"></p>
                                 <a href="" class="u-btn u-button-style u-btn-1">Message</a>
 
 

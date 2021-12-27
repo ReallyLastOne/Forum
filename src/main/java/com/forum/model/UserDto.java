@@ -14,7 +14,7 @@ public class UserDto {
     private LocalDateTime registerDate;
     private boolean banned;
     private Set<Role> roles;
-    private UserDetails userDetails;
+    private UserInfo userInfo;
 
     public UserDto(User user) {
         this.id = user.getId();
@@ -23,6 +23,6 @@ public class UserDto {
         this.registerDate = user.getRegisterDate();
         this.banned = user.isBanned();
         this.roles = user.getRoles();
-        this.userDetails = user.getUserDetails();
+        this.userInfo = user.getUserInfo();
     }
 }
