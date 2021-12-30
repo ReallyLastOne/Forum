@@ -1,0 +1,25 @@
+<div class="u-align-center u-container-style u-layout-cell u-shape-rectangle u-size-46 u-layout-cell-2"
+     th:fragment="conversation" th:remove="tag" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="u-border-2 u-border-grey-75 u-container-layout u-valign-bottom u-container-layout-2">
+        <div class="u-table u-table-responsive u-table-2">
+            <table class="u-table-entity">
+                <colgroup>
+                    <col width="100%">
+                </colgroup>
+                <tbody class="u-table-body">
+                <tr style="height: 50px;" th:each="message: ${conversation.getMessages()}">
+                    <div style="margin: auto;">
+                        <td  style="float:left; width: 15%;">
+                            <a th:text="${message.getSender().getName()}" th:href="@{/users?id=} + ${message.getSender().getId()}"></a>
+                        </td>
+                        <td style="float: right; width: 80%;" class="u-border-1 u-border-grey-dark-1 u-table-cell"
+                            th:text="${message.getContent()}">
+                        </td>
+                    </div>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,5 +1,6 @@
 package com.forum.controllers;
 
+import com.forum.model.Conversation;
 import com.forum.model.PasswordForm;
 import com.forum.model.User;
 import com.forum.model.UserInfo;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @RequestMapping("/profile")
 @Controller
@@ -33,13 +35,14 @@ public class ProfileController {
     }
 
     @GetMapping
-    public String getProfile(@RequestParam(name = "do", required = false) String action, Model model) {
+    public String getProfile(@RequestParam(name = "do", required = false) String action, @RequestParam(name = "id", required = false) Long pmId, Model model) {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         if (principal.equals("anonymousUser")) return "redirect:/";
         model.addAttribute("view", action);
         UserDetails details = (UserDetails) principal;
         User user = userService.getUserByName(details.getUsername()).get();
+
         if (action == null || !POSSIBLE_ACTIONS.contains(action)) {
             model.addAttribute("view", "main");
             return "profile";
@@ -48,7 +51,14 @@ public class ProfileController {
         } else if ("editpassword".equals(action)) {
             model.addAttribute("passwordForm", new PasswordForm());
         } else if ("pm".equals(action)) {
+            var conversations = user.getConversations();
 
+            if (pmId != null) {
+                model.addAttribute("view", "conversation");
+                conversations.stream().filter(e -> e.getId().equals(pmId)).findFirst().ifPresent(e -> model.addAttribute("conversation", e));
+            } else {
+                model.addAttribute("conversations", conversations);
+            }
         }
 
         return "profile";

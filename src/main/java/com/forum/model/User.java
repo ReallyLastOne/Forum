@@ -9,6 +9,7 @@ import javax.validation.constraints.*;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Getter
@@ -53,6 +54,12 @@ public class User {
 
     private boolean banned = false;
 
+    @OneToMany(mappedBy = "sender")
+    private List<Message> messagesSent;
+
+    @OneToMany(mappedBy = "receiver")
+    private List<Message> messagesReceived;
+
     @Embedded
     private UserInfo userInfo;
 
@@ -79,6 +86,14 @@ public class User {
     public void initialize() {
         if (registerDate == null) registerDate = LocalDateTime.now();
         if (userInfo == null) userInfo = new UserInfo();
+    }
+
+    public List<Conversation> getConversations() {
+        Set<Conversation> conversations = new HashSet<>();
+        messagesReceived.forEach(e -> conversations.add(e.getConversation()));
+        messagesSent.forEach(e -> conversations.add(e.getConversation()));
+
+        return conversations.stream().toList();
     }
 
     @Override

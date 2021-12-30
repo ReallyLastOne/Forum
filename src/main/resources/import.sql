@@ -32,3 +32,27 @@ insert into user_roles(user_id, role_id) values (1,3)
 insert into user_roles(user_id, role_id) values (2,2)
 insert into user_roles(user_id, role_id) values (3,1)
 insert into user_roles(user_id, role_id) values (4,1)
+
+insert into conversation(id, title) values (1, 'discussion')
+insert into conversation(id, title) values (2, 'buy fire axe')
+insert into conversation(id, title) values (3, 'reply to thread 12')
+insert into conversation(id, title) values (4, 'hello.')
+
+insert into message(id, content, sent_date, conversation_id, receiver_id, sender_id) values (1, 'what do you think about Big Bang?', '2021-05-05T6:00:55.9483536', 1, 2, 1)
+insert into message(id, content, sent_date, conversation_id, receiver_id, sender_id) values (2, 'i dont really know much', '2022-05-05T6:00:55.9483536', 1, 1, 2)
+insert into message(id, content, sent_date, conversation_id, receiver_id, sender_id) values (3, 'you must read about it', '2023-05-05T6:00:55.9483536', 1, 2, 1)
+insert into message(id, content, sent_date, conversation_id, receiver_id, sender_id) values (4, 'absolutely', '2024-05-05T6:00:55.9483536', 1, 1, 2)
+insert into message(id, content, sent_date, conversation_id, receiver_id, sender_id) values (5, 'check wikipedia page', '2025-05-05T6:00:55.9483536', 1, 2, 1)
+insert into message(id, content, sent_date, conversation_id, receiver_id, sender_id) values (6, 'or smth else', '2026-05-05T6:00:55.9483536', 1, 2, 1)
+
+insert into message(id, content, sent_date, conversation_id, receiver_id, sender_id) values (7, 'i want to buy fire axe from you', '2002-05-05T6:00:55.9483536', 2, 1, 2)
+insert into message(id, content, sent_date, conversation_id, receiver_id, sender_id) values (8, 'no way i can sell it now', '2002-06-05T6:00:55.9483536', 2, 2, 1)
+insert into message(id, content, sent_date, conversation_id, receiver_id, sender_id) values (9, 'ok :(', '2002-06-05T6:00:55.9483536', 2, 2, 1)
+
+insert into message(id, content, sent_date, conversation_id, receiver_id, sender_id) values (10, 'this is reply', '2002-06-05T6:00:55.9483536', 3, 3, 1)
+
+insert into message(id, content, sent_date, conversation_id, receiver_id, sender_id) values (11, 'hello from me', '2022-06-05T6:00:55.9483536', 4, 4, 1)
+
+
+
+
