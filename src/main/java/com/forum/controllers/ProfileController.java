@@ -1,6 +1,5 @@
 package com.forum.controllers;
 
-import com.forum.model.Conversation;
 import com.forum.model.PasswordForm;
 import com.forum.model.User;
 import com.forum.model.UserInfo;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 @RequestMapping("/profile")
 @Controller
@@ -51,7 +49,7 @@ public class ProfileController {
         } else if ("editpassword".equals(action)) {
             model.addAttribute("passwordForm", new PasswordForm());
         } else if ("pm".equals(action)) {
-            var conversations = user.getConversations();
+            var conversations = user.findConversations();
 
             if (pmId != null) {
                 model.addAttribute("view", "conversation");

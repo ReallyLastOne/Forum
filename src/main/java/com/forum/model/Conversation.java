@@ -4,8 +4,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Entity
 @Getter
@@ -17,6 +19,11 @@ public class Conversation {
     private List<Message> messages;
 
     private String title;
+
+    // should always be present, if not - something is wrong
+    public Message findLastMessage() {
+        return messages.stream().max(Comparator.comparing(Message::getSentDate)).get();
+    }
 
     @Override
     public boolean equals(Object o) {

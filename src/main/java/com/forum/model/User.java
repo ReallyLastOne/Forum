@@ -6,11 +6,11 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -88,12 +88,29 @@ public class User {
         if (userInfo == null) userInfo = new UserInfo();
     }
 
-    public List<Conversation> getConversations() {
+    /**
+     * Returns List of Conversations sorted by recentness.
+     */
+    public List<Conversation> findConversations() {
         Set<Conversation> conversations = new HashSet<>();
         messagesReceived.forEach(e -> conversations.add(e.getConversation()));
         messagesSent.forEach(e -> conversations.add(e.getConversation()));
 
-        return conversations.stream().toList();
+        List<Conversation> array = new ArrayList<>(conversations);
+        array.sort((o1, o2) -> {
+            try {
+                Date f1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH)
+                        .parse(o1.findLastMessage().getSentDate());
+                Date f2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH)
+                        .parse(o2.findLastMessage().getSentDate());
+                return f2.compareTo(f1);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            return 0;
+        });
+        return array;
     }
 
     @Override

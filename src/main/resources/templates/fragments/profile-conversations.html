@@ -4,7 +4,8 @@
         <div class="u-table u-table-responsive u-table-2">
             <table class="u-table-entity">
                 <colgroup>
-                    <col width="100%">
+                    <col width="75%">
+                    <col width="15%">
                 </colgroup>
                 <tbody class="u-table-body">
                 <tr style="height: 50px;" th:each="conversation: ${conversations}">
@@ -12,6 +13,7 @@
                         <a th:href="@{/profile?do=pm&id=}  +${conversation.getId()}"
                            th:text="${conversation.getTitle()}"></a>
                     </td>
+                    <td th:text="${T(com.forum.utilities.DateUtils).withoutHours(conversation.findLastMessage().getSentDate())}"></td>
                 </tr>
 
                 </tbody>
