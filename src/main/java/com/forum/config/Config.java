@@ -1,8 +1,6 @@
 package com.forum.config;
 
-import com.forum.model.PasswordForm;
-import com.forum.model.User;
-import com.forum.model.UserInfo;
+import com.forum.model.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -49,5 +47,10 @@ public class Config {
     @ModelAttribute("passwordForm")
     public PasswordForm passwordForm() {
         return new PasswordForm();
+    }
+
+    @ModelAttribute("messageContent")
+    public MessageContent messageContent() {
+        return new MessageContent();
     }
 }

@@ -54,14 +54,22 @@ public class User {
 
     private boolean banned = false;
 
-    @OneToMany(mappedBy = "sender")
+    @OneToMany(mappedBy = "sender", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Message> messagesSent;
 
-    @OneToMany(mappedBy = "receiver")
+    @OneToMany(mappedBy = "receiver", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Message> messagesReceived;
 
     @Embedded
     private UserInfo userInfo;
+
+    public void addMessageReceived(Message message) {
+        messagesReceived.add(message);
+    }
+
+    public void addMessageSent(Message message) {
+        messagesSent.add(message);
+    }
 
     public void addRole(Role role) {
         roles.add(role);

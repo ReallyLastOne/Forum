@@ -13,14 +13,28 @@
                         <td style="float: right; width: 80%;" class="u-border-1 u-border-grey-dark-1 u-table-cell"
                             th:text="${message.getContent()}">
                         </td>
-                        <td th:text="${message.getSentDate()}"></td>
+                        <td th:text="${T(com.forum.utilities.DateUtils).withoutSeconds(message.getSentDate())}"></td>
                     </div>
                 </tr>
 
                 </tbody>
             </table>
 
+            <div th:object="${pmId}">
+                <form action="#" th:action="@{/profile?do=pm&id=} + ${pmId} " th:object="${messageContent}"
+                      method="post">
 
+                    <div class="form-group">
+                        <input type="text" th:field="*{content}" class="form-control"
+                               id="content" placeholder="content">
+                    </div>
+
+                    <div class="col-md-6 mt-5">
+                        <input type="submit" class="btn btn-primary" value="Submit">
+                    </div>
+
+                </form>
+            </div>
 
         </div>
     </div>

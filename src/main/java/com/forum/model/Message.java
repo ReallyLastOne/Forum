@@ -3,10 +3,7 @@ package com.forum.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -14,6 +11,7 @@ import java.util.Objects;
 @Setter
 public class Message {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
@@ -30,6 +28,7 @@ public class Message {
 
     @Column(nullable = false)
     private String content;
+
 
     @Override
     public boolean equals(Object o) {
