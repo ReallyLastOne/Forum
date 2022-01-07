@@ -13,8 +13,12 @@ public class DateUtils {
         return date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 
+    public static String toBase(LocalDateTime date) {
+        return date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+    }
+
     public static String withHours(LocalDateTime date) {
-        return date.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
+        return date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     }
 
     /* "dd-MM-yyyy HH:mm:ss" -> "dd-MM-yyyy"

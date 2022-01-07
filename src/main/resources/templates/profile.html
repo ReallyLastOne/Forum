@@ -46,6 +46,10 @@
                         <div th:if="${#strings.equals(view, 'conversation')}">
                             <div th:replace="fragments/profile-conversation :: conversation"></div>
                         </div>
+
+                        <div th:if="${#strings.equals(view, 'newpm')}">
+                            <div th:replace="fragments/profile-new-conversation :: new-conversation"></div>
+                        </div>
                     </div>
                 </div>
             </div>

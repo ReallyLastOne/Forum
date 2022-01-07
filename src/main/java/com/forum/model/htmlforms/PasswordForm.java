@@ -1,4 +1,4 @@
-package com.forum.model;
+package com.forum.model.htmlforms;
 
 import lombok.Getter;
 import lombok.Setter;

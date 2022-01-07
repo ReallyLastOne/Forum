@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
       layout:decorate="~{layouts/default}">
 <head>
     <meta charset="utf-8">
@@ -72,7 +73,9 @@
 
                                 <h2 class="u-text u-text-1">Description</h2>
                                 <p class="u-text u-text-2" th:text="${user.getUserInfo().getDescription()}"></p>
-                                <a href="" class="u-btn u-button-style u-btn-1">Message</a>
+
+                                <a sec:authorize="isAuthenticated()" th:href="@{/profile?do=newpm&u=} +${user.getId()}"
+                                   class="u-btn u-button-style u-btn-1">Message</a>
 
 
                             </div>

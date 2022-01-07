@@ -1,0 +1,22 @@
+<div class="u-align-center u-container-style u-layout-cell u-shape-rectangle u-size-46 u-layout-cell-2"
+     th:fragment="new-conversation" th:remove="tag" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="u-border-2 u-border-grey-75 u-container-layout u-valign-bottom u-container-layout-2">
+        <div class="u-table u-table-responsive u-table-2">
+
+            <form action="#" th:action="@{/profile?do=newpm}" th:object="${message}"
+                  method="post">
+                <fieldset>
+                    <label for="receiver">Receiver:</label><br/>
+                    <input type="text" id="receiver" th:field="*{receiver}"><br/>
+                    <label for="title">Title:</label><br/>
+                    <input type="text" id="title" th:field="*{title}"><br/><br/>
+
+                    <textarea type="text" th:field="*{content}" class="form-control"
+                              id="content" placeholder="content" style="width: auto; height: auto;">
+                            </textarea>
+                </fieldset>
+                <input type="submit" class="btn btn-primary u-btn u-btn-submit u-button-style" value="Submit">
+            </form>
+        </div>
+    </div>
+</div>

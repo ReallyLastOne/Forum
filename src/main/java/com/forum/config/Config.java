@@ -1,13 +1,11 @@
 package com.forum.config;
 
 import com.forum.model.*;
+import com.forum.model.htmlforms.MessageContent;
+import com.forum.model.htmlforms.MessageForm;
+import com.forum.model.htmlforms.PasswordForm;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.parameters.P;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -52,5 +50,10 @@ public class Config {
     @ModelAttribute("messageContent")
     public MessageContent messageContent() {
         return new MessageContent();
+    }
+
+    @ModelAttribute("message")
+    public MessageForm messageForm() {
+        return new MessageForm();
     }
 }

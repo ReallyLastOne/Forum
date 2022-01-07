@@ -1,6 +1,9 @@
 package com.forum.controllers;
 
 import com.forum.model.*;
+import com.forum.model.htmlforms.MessageContent;
+import com.forum.model.htmlforms.MessageForm;
+import com.forum.model.htmlforms.PasswordForm;
 import com.forum.services.ConversationService;
 import com.forum.services.UserMapper;
 import com.forum.services.UserService;
@@ -22,7 +25,7 @@ import java.util.Optional;
 public class ProfileController {
     private final UserService userService;
     private final UserMapper userMapper;
-    private static final List<String> POSSIBLE_ACTIONS = Arrays.asList("editprofile", "editpassword", "pm");
+    private static final List<String> POSSIBLE_ACTIONS = Arrays.asList("editprofile", "editpassword", "pm", "newpm");
     private final PasswordEncoder passwordEncoder;
     private final ConversationService conversationService;
 
@@ -38,7 +41,9 @@ public class ProfileController {
     public String getProfile(
             @RequestParam(name = "do", required = false) String action,
             @RequestParam(name = "id", required = false) Long pmId, Model model,
-            @ModelAttribute(name = "messageContent") MessageContent messageContent) {
+            @RequestParam(name = "u", required = false) Long uId,
+            @ModelAttribute(name = "messageContent") MessageContent messageContent,
+            @ModelAttribute(name = "message") MessageForm messageForm) {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         if (principal.equals("anonymousUser")) return "redirect:/";
@@ -63,6 +68,9 @@ public class ProfileController {
             } else {
                 model.addAttribute("conversations", conversations);
             }
+        } else if ("newpm".equals(action)) {
+            Optional<User> userById = userService.getUserById(uId);
+            userById.ifPresent(value -> messageForm.setReceiver(value.getName()));
         }
 
         return "profile";
@@ -74,7 +82,8 @@ public class ProfileController {
             @ModelAttribute(name = "userInfo") @Valid UserInfo userInfo,
             @ModelAttribute(name = "passwordForm") PasswordForm passwordForm,
             @RequestParam(name = "id", required = false) Long pmId,
-            @ModelAttribute(name = "messageContent") MessageContent messageContent) {
+            @ModelAttribute(name = "messageContent") MessageContent messageContent,
+            @ModelAttribute(name = "message") MessageForm messageForm) {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal.equals("anonymousUser")) return "redirect:/";
         UserDetails details = (UserDetails) principal;
@@ -98,10 +107,18 @@ public class ProfileController {
             if (pmId == null) return "redirect:/profile";
             Optional<Conversation> conversation = user.findConversations().stream().filter(e -> e.getId().equals(pmId)).findAny();
             conversation.ifPresent(value -> {
-                System.out.println();
                 value.addMessage(user, messageContent.getContent());
                 conversationService.save(conversation.get());
             });
+        } else if ("newpm".equals(action)) {
+            var receiver = userService.getUserByName(messageForm.getReceiver());
+            if (receiver.isPresent()) {
+                Conversation conversation = new Conversation();
+                conversation.setTitle(messageForm.getTitle());
+                conversation.addMessage(user, receiver.get(), messageForm.getContent());
+                conversationService.save(conversation);
+            }
+            return "redirect:/profile?do=pm";
         }
 
         model.addAttribute("view", "main");

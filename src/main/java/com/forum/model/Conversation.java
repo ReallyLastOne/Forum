@@ -15,17 +15,22 @@ import java.util.*;
 @Setter
 public class Conversation {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToMany(mappedBy = "conversation", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true)
+    @OneToMany(mappedBy = "conversation", cascade = {CascadeType.ALL}, orphanRemoval = true)
     private List<Message> messages;
-
     private String title;
+
+    public Conversation() {
+        this.messages = new ArrayList<>();
+    }
 
     // should always be present, if not - something is wrong
     public Message findLastMessage() {
         return messages.stream().max(Comparator.comparing(Message::getSentDate)).get();
     }
 
+    // only when there are valid messages in conversations (probably bad)
     public void addMessage(User sender, String content) {
         Message message = new Message();
         message.setContent(content);
@@ -45,6 +50,16 @@ public class Conversation {
             sender.addMessageReceived(message);
         }
 
+    }
+
+    public void addMessage(User sender, User receiver, String content) {
+        Message message = new Message();
+        message.setSender(sender);
+        message.setReceiver(receiver);
+        message.setConversation(this);
+        message.setContent(content);
+        message.setSentDate(DateUtils.toBase(LocalDateTime.now()));
+        messages.add(message);
     }
 
     @Override
