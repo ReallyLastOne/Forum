@@ -63,6 +63,13 @@ public class User {
     @Embedded
     private UserInfo userInfo;
 
+    @OneToMany(mappedBy = "receiver", cascade = CascadeType.ALL)
+    private List<Warn> warnsReceived;
+
+    @OneToMany(mappedBy = "givenBy", cascade = CascadeType.ALL)
+    private List<Warn> warnGiven;
+
+
     public void addMessageReceived(Message message) {
         messagesReceived.add(message);
     }

@@ -10,12 +10,16 @@
                 <tr style="height: 50px;">
                     <td class="u-border-1 u-border-grey-dark-1 u-table-cell">WARNS</td>
                 </tr>
-                <tr style="height: 167px;">
-                    <td class="u-border-1 u-border-grey-dark-1 u-table-cell"></td>
+
+                <tr th:each="warn: ${warns}">
+                    <td class="u-border-1  u-table-cell" th:text="${warn.toString()}">
+                    </td>
                 </tr>
+
                 <tr style="height: 50px;">
                     <td class="u-border-1 u-border-grey-dark-1 u-table-cell">REPUTATION</td>
                 </tr>
+
                 <tr style="height: 167px;">
                     <td class="u-border-1 u-border-grey-dark-1 u-table-cell"></td>
                 </tr>

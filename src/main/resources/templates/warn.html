@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html"
+      layout:decorate="~{layouts/default}">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title></title>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="Main">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/profile.css}" media="all">
+    <style>
+    {
+        box-sizing: border-box;
+    }
+    .column {
+    float: left;
+    width: 50%;
+    padding: 35px;
+    }
+
+    .row:after {
+    content: "";
+    display: table;
+    clear: both;
+    }
+
+
+
+    </style>
+</head>
+
+<body class="u-body">
+
+<div layout:fragment="content">
+    <!--
+        <form action="#" th:action="@{/warn} + ${postId}" th:object="${warnReasonForm}"
+              method="post">
+
+            <div class="form-group">ee
+                <input type="text" th:field="*{reason}" class="form-control"
+                       id="reason">
+            </div>
+            <input type="submit" name="submit"/>
+
+        </form>-->
+    </br>
+    </br>
+    <center>WARN FORMULA</center>
+    <div class="row">
+        <div class="column">
+            <form action="#" th:action="@{/warn?p=} + ${postId}" th:object="${warnReasonForm}"
+                  method="post">
+
+                <div class="form-group">
+                    <textarea th:field="*{reason}" class="form-control"
+                              id="reason" placeholder="Reason for warn"></textarea>
+                </div>
+                </br>
+
+                <div class="form-group">
+                    <select name="value" id="value">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+                </br>
+
+                <input type="submit" name="submit"/>
+
+            </form>
+        </div>
+        <div class="column">
+            <div>
+                <a th:text="${post.getAuthor().getName()}"
+                   th:href="@{users?id=} +${post.getAuthor().getId()}"></a>
+                wrote in
+                <a th:text="${post.getThread().getName()}"
+                th:href="@{threads?id=}+${post.getThread().getId()}"></a>
+            </div>
+            <div th:text="${post.getContent()}"></div>
+
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

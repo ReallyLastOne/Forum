@@ -4,6 +4,7 @@ import com.forum.model.*;
 import com.forum.model.htmlforms.MessageContent;
 import com.forum.model.htmlforms.MessageForm;
 import com.forum.model.htmlforms.PasswordForm;
+import com.forum.model.htmlforms.WarnReasonForm;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -55,5 +56,10 @@ public class Config {
     @ModelAttribute("message")
     public MessageForm messageForm() {
         return new MessageForm();
+    }
+
+    @ModelAttribute("warnReasonForm")
+    public WarnReasonForm warnReasonForm() {
+        return new WarnReasonForm();
     }
 }

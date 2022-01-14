@@ -5,6 +5,8 @@ import com.forum.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class PostService {
     private final PostRepository postRepository;
@@ -16,5 +18,9 @@ public class PostService {
 
     public Post savePost(Post post) {
         return postRepository.save(post);
+    }
+
+    public Optional<Post> getById(Long id) {
+        return postRepository.findById(id);
     }
 }

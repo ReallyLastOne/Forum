@@ -1,9 +1,6 @@
 package com.forum.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -14,20 +11,28 @@ import java.util.Objects;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@RequiredArgsConstructor
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NonNull
     private String content;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @NonNull
     private Thread thread;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @NonNull
     private User author;
 
+    @NonNull
     private LocalDateTime creationDate;
+
+    @OneToOne
+    private Warn warn;
 
     @Override
     public boolean equals(Object o) {

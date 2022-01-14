@@ -8,6 +8,7 @@ import com.forum.services.ConversationService;
 import com.forum.services.UserMapper;
 import com.forum.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -38,6 +39,7 @@ public class ProfileController {
     }
 
     @GetMapping
+    @PreAuthorize("isAuthenticated()")
     public String getProfile(
             @RequestParam(name = "do", required = false) String action,
             @RequestParam(name = "id", required = false) Long pmId, Model model,
@@ -46,13 +48,15 @@ public class ProfileController {
             @ModelAttribute(name = "message") MessageForm messageForm) {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        if (principal.equals("anonymousUser")) return "redirect:/";
         model.addAttribute("view", action);
         UserDetails details = (UserDetails) principal;
         User user = userService.getUserByName(details.getUsername()).get();
 
         if (action == null || !POSSIBLE_ACTIONS.contains(action)) {
             model.addAttribute("view", "main");
+            if (user.getWarnsReceived() != null) {
+                model.addAttribute("warns", user.getWarnsReceived());
+            }
             return "profile";
         } else if ("editprofile".equals(action)) {
             model.addAttribute("userInfo", user.getUserInfo());
@@ -77,6 +81,7 @@ public class ProfileController {
     }
 
     @PostMapping
+    @PreAuthorize("isAuthenticated()")
     public String changeProfileData(
             @RequestParam(name = "do", required = true) String action, Model model,
             @ModelAttribute(name = "userInfo") @Valid UserInfo userInfo,
@@ -85,7 +90,7 @@ public class ProfileController {
             @ModelAttribute(name = "messageContent") MessageContent messageContent,
             @ModelAttribute(name = "message") MessageForm messageForm) {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (principal.equals("anonymousUser")) return "redirect:/";
+
         UserDetails details = (UserDetails) principal;
         User user = userService.getUserByName(details.getUsername()).get();
 
