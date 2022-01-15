@@ -69,6 +69,8 @@ public class User {
     @OneToMany(mappedBy = "givenBy", cascade = CascadeType.ALL)
     private List<Warn> warnGiven;
 
+    @OneToMany(mappedBy = "receiver")
+    private List<Reputation> reputation;
 
     public void addMessageReceived(Message message) {
         messagesReceived.add(message);

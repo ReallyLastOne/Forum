@@ -38,41 +38,59 @@
                                 <div class="u-layout-col">
                                     <!-- for each post in thread-->
                                     <tr th:each="post: ${thread.getPosts()}">
-
                                         <div class="u-size-20" th:object="${thread}">
-
                                             <div class="u-layout-row">
-
                                                 <div class="u-container-style u-layout-cell u-size-21 u-white">
+                                                    <table>
+                                                        <tr>
+                                                            <!-- display author's name-->
+                                                            <th>
+                                                                <div class="u-container-layout u-container-layout-1">
+                                                                    <b>
+                                                                        <a th:text="${post.getAuthor().getName()}"
+                                                                           th:href="@{/users?id=} + ${post.getAuthor().getId()}">
+                                                                        </a>
+                                                                    </b>
+                                                                </div>
+                                                            </th>
+                                                            <!-- display author's register date -->
+                                                            <th>
+                                                                <div class="u-container-layout u-container-layout-2"
+                                                                     th:text="${T(com.forum.utilities.DateUtils).convertToString(post.getAuthor().getRegisterDate())}">
+                                                                </div>
+                                                            </th>
+                                                        </tr>
 
-                                                    <!-- display author's name-->
-                                                    <div class="u-container-layout u-container-layout-1">
-                                                        <b>
-                                                            <a th:text="${post.getAuthor().getName()}"
-                                                               th:href="@{/users?id=} + ${post.getAuthor().getId()}">
-                                                            </a>
-                                                        </b>
-                                                    </div>
-                                                    <!-- display author's register date -->
-                                                    <div class="u-container-layout u-container-layout-2"
-                                                         th:text="${T(com.forum.utilities.DateUtils).convertToString(post.getAuthor().getRegisterDate())}">
-                                                    </div>
+                                                        <tr>
+                                                            <th sec:authorize="isAuthenticated()">
+                                                                <div class="u-container-layout u-container-layout-4">
+                                                                    <form method="POST" th:action="@{/grant-reput?p=} + ${post.getId()}">
+                                                                        <a th:href="@{/grant-reput?p=} + ${post.getId()}"
+                                                                           class="button"
+                                                                           style="color: black;">
+                                                                            <button class="btn">
+                                                                                <i class="fa fa-plus"></i>Approve
+                                                                            </button>
+                                                                        </a>
+                                                                    </form>
+                                                                </div>
+                                                            </th>
+                                                            <th th:if="${#authorization.expression('hasAuthority(''ADMIN'') || hasAuthority(''MODERATOR'')')}">
+                                                                <div class="u-container-layout u-container-layout-4">
+                                                                    <a th:href="@{/warn?p=} + ${post.getId()}"
+                                                                       class="button"
+                                                                       style="color: black;">
+                                                                        <button class="btn">
+                                                                            <i class="fa fa-warning"></i>Warn
+                                                                        </button>
+                                                                    </a>
+                                                                </div>
+                                                            </th>
+                                                        </tr>
 
-
-                                                    <div class="u-container-layout u-container-layout-4"
-                                                         th:if="${#authorization.expression('hasAuthority(''ADMIN'') || hasAuthority(''MODERATOR'')')}">
-                                                        <a th:href="@{/warn?p=} + ${post.getId()}" class="button"
-                                                           style="color: black;">
-                                                            <button class="btn">
-                                                                <i class="fa fa-warning"></i>Warn
-                                                            </button>
-                                                        </a>
-
-                                                        <!-- <button class="btn">
-                                                             <i class="fa fa-warning"></i>Warn
-                                                         </button>-->
-                                                    </div>
+                                                    </table>
                                                 </div>
+
 
                                                 <!-- display post content -->
                                                 <div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-39 u-white u-layout-cell-2">

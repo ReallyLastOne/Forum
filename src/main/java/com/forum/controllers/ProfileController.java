@@ -56,6 +56,7 @@ public class ProfileController {
             model.addAttribute("view", "main");
             if (user.getWarnsReceived() != null) {
                 model.addAttribute("warns", user.getWarnsReceived());
+                model.addAttribute("reputation", user.getReputation());
             }
             return "profile";
         } else if ("editprofile".equals(action)) {
