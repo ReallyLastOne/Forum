@@ -35,7 +35,6 @@ public class ThreadController {
     public String getSingleThread(@RequestParam long id, Model model) {
         Optional<Thread> thread = threadService.getThread(id);
         if (thread.isPresent()) {
-            System.out.println(thread.get());
 
             model.addAttribute("thread", thread.get());
             return "thread";

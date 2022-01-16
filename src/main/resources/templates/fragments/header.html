@@ -21,7 +21,13 @@
             <li><a sec:authorize="!isAuthenticated()" th:href="@{/login}">Login</a></li>
             <li><a href="https://github.com/ReallyLastOne/Forum">Contact</a></li>
             <li><a sec:authorize="isAuthenticated()" th:href="@{/profile}">Profile</a></li>
-            <li><a sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a></li>
+            <li sec:authorize="isAuthenticated()">
+                <form name="submitForm" method="POST" th:action="@{/logout}">
+                    <input type="hidden" name="param1" value="param1Value">
+                    <A href="javascript:document.submitForm.submit()">Logout</A>
+                </form>
+
+            </li>
         </ul>
     </div>
 </header>
