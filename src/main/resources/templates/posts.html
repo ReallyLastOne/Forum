@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html"
+      layout:decorate="~{layouts/default}">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title></title>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="Main">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/profile.css}" media="all">
+    <style>
+    {
+        box-sizing: border-box;
+    }
+    .column {
+    float: left;
+    width: 50%;
+    padding: 35px;
+    }
+
+    .row:after {
+    content: "";
+    display: table;
+    clear: both;
+    }
+
+
+
+
+
+    </style>
+</head>
+
+<body class="u-body">
+
+<div layout:fragment="content">
+    </br>
+    </br>
+    <div class="row">
+        <div class="column">
+            <form action="#" th:action="@{/posts?p=} + ${postId}"
+                  method="post">
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

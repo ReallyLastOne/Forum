@@ -64,7 +64,8 @@
                                                         <tr>
                                                             <th sec:authorize="isAuthenticated()">
                                                                 <div class="u-container-layout u-container-layout-4">
-                                                                    <form method="POST" th:action="@{/grant-reput?p=} + ${post.getId()}">
+                                                                    <form method="POST"
+                                                                          th:action="@{/grant-reput?p=} + ${post.getId()}">
                                                                         <a th:href="@{/grant-reput?p=} + ${post.getId()}"
                                                                            class="button"
                                                                            style="color: black;">
@@ -98,6 +99,20 @@
                                                         <p class="u-text u-text-1" th:text="${post.getContent()}"
                                                            th:id="post+${post.getId()}"></p>
                                                     </div>
+                                                    <th th:if="${#authorization.expression('hasAuthority(''ADMIN'') || hasAuthority(''MODERATOR'')')}">
+                                                        <div class="u-container-layout u-container-layout-4">
+                                                            <form method="POST"
+                                                                  th:action="@{/posts?p=} + ${post.getId()}">
+                                                                <a th:href="@{/posts?p=} + ${post.getId()}"
+                                                                   class="button"
+                                                                   style="color: black;">
+                                                                    <button class="btn">
+                                                                        <i class="fa fa-trash"></i>Delete
+                                                                    </button>
+                                                                </a>
+                                                            </form>
+                                                        </div>
+                                                    </th>
                                                 </div>
                                             </div>
                                         </div>

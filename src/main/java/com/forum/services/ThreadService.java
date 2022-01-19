@@ -43,4 +43,12 @@ public class ThreadService {
         }
         return Optional.empty();
     }
+
+    public void delete(Thread thread) {
+        threadRepository.delete(thread);
+    }
+
+    public void deleteById(Long id) {
+        threadRepository.deleteById(id);
+    }
 }
