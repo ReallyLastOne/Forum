@@ -21,7 +21,6 @@ public class Post {
     private String content;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @NonNull
     private Thread thread;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -45,5 +44,11 @@ public class Post {
     @Override
     public int hashCode() {
         return Objects.hash(id, content, thread, author, creationDate);
+    }
+
+    @Override
+    public String toString() {
+        return "Post={id=" + id + ", content=" + content + ", thread= " + thread.toString() + ", author=" + author.getName()
+                + ", creationDate=" + creationDate + ", warn=" + warn;
     }
 }

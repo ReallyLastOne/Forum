@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
       layout:decorate="~{layouts/default}">
 
 <head>
@@ -16,11 +17,13 @@
 
 <body>
 <div layout:fragment="content">
-
     <section class="u-clearfix u-section-1" id="sec-4ae4">
-        <div class="u-clearfix u-sheet u-sheet-1">
-            <div class="u-expanded-width u-list u-list-1">
 
+        <div class="u-clearfix u-sheet u-sheet-1">
+
+            <div class="u-expanded-width u-list u-list-1">
+                <a sec:authorize="isAuthenticated()" th:href="@{/newthread?section=} + ${section.getId()}"
+                   class="u-btn u-button-style u-btn-1">New thread</a>
 
                 <tr th:each="thread: ${section.getThreads()}">
                     <div class="u-repeater u-repeater-1">

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>New thread</title>
+</head>
+<body>
+<section class="u-align-center u-clearfix u-section-2" id="sec-4f95">
+    <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-form u-form-1">
+            <div sec:authorize="isAuthenticated()">
+
+                <form method="POST" th:action="@{/newthread?section=}+${sectionId}"
+                      class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" th:object="${threadForm}"
+                      style="padding: 10px" source="custom" name="f">
+                    <label for="title">Thread title:</label><br>
+                    <input th:field="*{title}" type="text" id="title" required=""><br>
+                    <label>Content:</label><br>
+
+                    <div class="u-form-group u-form-message">
+                        <!--<label for="message-3b9a" class="u-form-control-hidden u-label">Message</label>-->
+                        <textarea placeholder="Enter your message" rows="4" cols="50" id="message-3b9a"
+                                  name="content" th:field="*{content}"
+                                  class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"
+                                  required=""></textarea>
+                    </div>
+                    <div class="u-align-left u-form-group u-form-submit">
+                        <button type="submit" class="btn btn-primary u-btn u-btn-submit u-button-style">Create
+                        </button>
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

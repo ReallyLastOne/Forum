@@ -27,13 +27,16 @@ public class PostController {
     @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('MODERATOR')")
     public String deletePost(@RequestParam(name = "p") Long postId) {
         Optional<Post> post = postService.getById(postId);
+
         if (post.isPresent()) {
             Thread thread = post.get().getThread();
             if (thread.getPosts().size() == 1) threadService.delete(thread);
             else {
                 postService.deleteById(postId);
+                thread.removePost(post.get());
+                threadService.save(thread);
             }
         }
-        return "posts";
+        return "redirect:/";
     }
 }

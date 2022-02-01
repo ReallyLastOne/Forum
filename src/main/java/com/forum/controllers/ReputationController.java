@@ -13,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -44,7 +43,7 @@ public class ReputationController {
         if (postToAwardFor.isPresent()) {
             User userGivingReput = userService.getUserByName(username).get();
 
-            if (!reputationService.hasUserGrantedReputToPost(userGivingReput.getId(), postToAwardFor.get().getId())) {
+            if (!reputationService.hasUserGrantedReputToPost(userGivingReput.getId(), postToAwardFor.get().getId()) && !userGivingReput.getName().equals(username)) {
                 Reputation reputation = new Reputation(1, postToAwardFor.get().getAuthor(), userGivingReput.getId(), postToAwardFor.get().getId(), LocalDateTime.now().toString());
                 reputationService.save(reputation);
                 return "redirect:/";

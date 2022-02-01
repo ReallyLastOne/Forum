@@ -20,7 +20,7 @@ public class Section {
 
     private String name;
 
-    @OneToMany(orphanRemoval = true, mappedBy = "section")
+    @OneToMany(orphanRemoval = true, mappedBy = "section", cascade = CascadeType.ALL)
     private List<Thread> threads;
 
     private String description;
