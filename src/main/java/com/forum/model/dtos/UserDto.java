@@ -1,5 +1,9 @@
-package com.forum.model;
+package com.forum.model.dtos;
 
+import com.forum.model.Post;
+import com.forum.model.Role;
+import com.forum.model.User;
+import com.forum.model.UserInfo;
 import lombok.Getter;
 
 import java.time.LocalDateTime;

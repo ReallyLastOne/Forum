@@ -2,6 +2,7 @@ package com.forum.services;
 
 import com.forum.model.Section;
 import com.forum.model.Thread;
+import com.forum.model.dtos.SectionMainDto;
 import com.forum.repositories.SectionRepository;
 import com.forum.repositories.ThreadRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,11 @@ public class SectionService {
     }
 
     public Optional<Thread> getLastActiveThread(long sectionId) {
-        Optional<Section> section = sectionRepository.findById(sectionId); // not better to move findMostRecentThread() to section repository?
+        Optional<Section> section = sectionRepository.findById(sectionId);
         return section.get().findMostRecentThread();
+    }
+
+    public List<SectionMainDto> getAllSectionsMainDto() {
+        return sectionRepository.getSectionsMainDto();
     }
 }

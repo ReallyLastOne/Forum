@@ -1,10 +1,13 @@
 package com.forum.services;
 
 import com.forum.model.Post;
+import com.forum.model.dtos.PostDto;
 import com.forum.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -32,4 +35,7 @@ public class PostService {
         postRepository.deleteById(id);
     }
 
+    public List<PostDto> getAllPostsFromSection(Long id, Pageable pageable) {
+        return postRepository.findAllPostsDtoFromSection(id, pageable);
+    }
 }

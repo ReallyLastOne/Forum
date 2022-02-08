@@ -35,23 +35,23 @@
                         <div class="u-container-style u-list-item u-repeater-item">
                             <div class="u-container-layout u-similar-container u-container-layout-2">
                                 <h1 class="u-text u-text-default u-text-3">Last post:</h1>
-                                <div th:if="${service.getLastActiveThread(section.getId()).isPresent()}">
+                                <div th:if="${section.getMostRecentPost() != null}">
 
                                     <!-- last active thread name display with url reference -->
                                     <b>
                                         <a class="u-text u-text-default u-text-4"
-                                           th:text="${service.getLastActiveThread(section.getId()).get().getName()}"
-                                           th:href="@{~/threads?id=}+${service.getLastActiveThread(section.getId()).get().getId()}"></a>
+                                           th:text="${section.getMostRecentPost().getThread().getName()}"
+                                           th:href="@{~/threads?id=}+${section.getMostRecentPost().getThread().getId()}"></a>
                                     </b>
                                     <!-- last post author name with url reference -->
                                     <a class="u-text u-text-default u-text-4"
-                                       th:href="@{/users?id=} + ${service.getLastActiveThread(section.getId()).get().findMostRecentPost().get().getAuthor().getId()}"
-                                       th:text="${service.getLastActiveThread(section.getId()).get().findMostRecentPost().get().getAuthor().getName()}">
+                                       th:href="@{/users?id=} + ${section.getMostRecentPost().getAuthor().getId()}"
+                                       th:text="${section.getMostRecentPost().getAuthor().getName()}">
                                     </a>
 
                                     <!-- last post creation date -->
                                     <p class="u-text u-text-default u-text-4"
-                                       th:text="${T(com.forum.utilities.DateUtils).withHours(service.getLastActiveThread(section.getId()).get().findMostRecentPost().get().getCreationDate())}">
+                                       th:text="${T(com.forum.utilities.DateUtils).withHours(section.getMostRecentPost().getCreationDate())}">
                                     </p>
 
                                 </div>
@@ -63,9 +63,7 @@
             </div>
         </div>
     </section>
-
 </div>
-
 
 </body>
 </html>

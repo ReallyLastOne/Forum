@@ -1,7 +1,7 @@
 package com.forum.services;
 
 import com.forum.model.User;
-import com.forum.model.UserDto;
+import com.forum.model.dtos.UserDto;
 import com.forum.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
